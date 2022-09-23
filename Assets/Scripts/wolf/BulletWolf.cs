@@ -19,6 +19,6 @@ public class BulletWolf : MonoBehaviour
                 Destroy(gameObject);
             }
         }
-          
+        if (!target) Destroy(gameObject);
     }
 }

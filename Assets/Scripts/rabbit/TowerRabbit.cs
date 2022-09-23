@@ -55,6 +55,8 @@ public class TowerRabbit : MonoBehaviour
         }
         for (i = 0; i < countTarget && i < targets.Count; i++) targets[i].gameObject.GetComponent<hpEnemy>().Dmg(damage);
         
+        GameObject lighting = Instantiate(bullet, Vector3.Lerp(startBullet.position, targets[0].transform.position, 0.5f), Quaternion.identity);
+        lighting.transform.LookAt(targets[0].transform);
 
         yield return new WaitForSeconds(0.2f);
         
@@ -67,6 +69,7 @@ public class TowerRabbit : MonoBehaviour
             Destroy(lightings[i]);
         }
         lightings.Clear();
+        Destroy(lighting);
 
         yield return new WaitForSeconds(speedBullet-0.2f);
         isShoot = false;

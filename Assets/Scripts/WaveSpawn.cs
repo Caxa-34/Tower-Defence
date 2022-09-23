@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class WaveSpawn : MonoBehaviour
 {
     public int numberWave = 0;
-
+    int i, j;
     int[,] countEnemies = new int[15, 4]
     { {3, 0, 0, 0}, 
     {5, 0, 0, 0},
@@ -35,8 +35,7 @@ public class WaveSpawn : MonoBehaviour
     int countlog4boss;
     static public int countOnMap;
     public GameObject spawnPoint;
-
-    public float intervalSpawn = 1;
+    public float intervalSpawn = 1f;
     
     void Start()
     {
@@ -48,7 +47,9 @@ public class WaveSpawn : MonoBehaviour
         
         Debug.Log(countlog1.ToString());
         intervalSpawn = 1f - 0.03f * numberWave;
-        InvokeRepeating("SpawnEnemy", 2, intervalSpawn);
+        GetComponent<Money>().maxSpeedMoney = 10f - (0.6f * numberWave);
+        StartCoroutine(SpawnEnemy());
+        
     }
 
     // Update is called once per frame
@@ -62,28 +63,36 @@ public class WaveSpawn : MonoBehaviour
         }
     }
 
-    void SpawnEnemy()
+    IEnumerator SpawnEnemy()
     {
-        if(countlog1 > 0)
+        for (j = 0; j < 3; j++)
         {
-        GameObject log1 = GameObject.Instantiate(log1Pref, spawnPoint.transform.position, Quaternion.identity) as GameObject;
+            for (i = 0; i <= countEnemies[numberWave, 0]/3 && countlog1 > 0; i++)
+            {
+                GameObject log1 = GameObject.Instantiate(log1Pref, spawnPoint.transform.position, Quaternion.identity) as GameObject;
+                countlog1--;
+                yield return new WaitForSeconds(intervalSpawn);
+            }
+            for (i = 0; i <= countEnemies[numberWave, 1]/3 && countlog2 > 0; i++)
+            {
+                GameObject log2 = GameObject.Instantiate(log2Pref, spawnPoint.transform.position, Quaternion.identity) as GameObject;
+                countlog2--;
+                yield return new WaitForSeconds(intervalSpawn);
+            }
+            for (i = 0; i <= countEnemies[numberWave, 2]/3 && countlog3 > 0; i++)
+            {
+                GameObject log3 = GameObject.Instantiate(log3Pref, spawnPoint.transform.position, Quaternion.identity) as GameObject;
+                countlog3--;
+                yield return new WaitForSeconds(intervalSpawn);
+            }
+            for (i = 0; i <= countEnemies[numberWave, 3]/3 && countlog4boss > 0; i++)
+            {
+                yield return new WaitForSeconds(intervalSpawn*2);
+                GameObject log4boss = GameObject.Instantiate(log4bossPref, spawnPoint.transform.position, Quaternion.identity) as GameObject;
+                countlog4boss--;
+            }
+        }
 
-        countlog1--;
-        }
-        if(countlog2 > 0)
-        {
-        GameObject log2 = GameObject.Instantiate(log2Pref, spawnPoint.transform.position, Quaternion.identity) as GameObject;
-        countlog2--;
-        }
-        if(countlog3 > 0)
-        {
-        GameObject log3 = GameObject.Instantiate(log3Pref, spawnPoint.transform.position, Quaternion.identity) as GameObject;
-        countlog3--;
-        }
-        if(countlog4boss > 0)
-        {
-        GameObject log4boss = GameObject.Instantiate(log4bossPref, spawnPoint.transform.position, Quaternion.identity) as GameObject;
-        countlog4boss--;
-        }
+
     }
 }

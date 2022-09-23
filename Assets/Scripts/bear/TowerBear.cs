@@ -30,7 +30,8 @@ public class TowerBear : MonoBehaviour
         isShoot = true;
         GameObject bul = GameObject.Instantiate(bullet, startBullet.position, Quaternion.identity) as GameObject;
         bul.GetComponent<BulletBear>().target = target;
-        anim.Play("StoneCast");
+        bul.GetComponent<BulletBear>().damage = damage;
+        //anim.Play("StoneCast");
         yield return new WaitForSeconds(speedBullet);
         isShoot = false;
     }

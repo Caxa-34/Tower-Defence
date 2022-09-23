@@ -5,11 +5,19 @@ using UnityEngine;
 public class BulletBear : MonoBehaviour
 {
     public Transform target;
-
+    public int damage;
+    
     // Update is called once per frame
     void Update()
     {
-        if (target) transform.position = Vector3.MoveTowards(transform.position, target.position, Time.deltaTime*10f);
-        if (transform.position == target.position) target.gameObject.GetComponent<hpEnemy>().Dmg(5);   
+        if (target) 
+        {
+            transform.position = Vector3.MoveTowards(transform.position, target.position, Time.deltaTime*20f);
+            if (target.position == transform.position)
+            {
+                target.gameObject.GetComponent<hpEnemy>().Dmg(damage);
+                Destroy(gameObject);
+            }
+        }
     }
 }

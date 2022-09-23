@@ -41,7 +41,6 @@ public class TowerWolf : MonoBehaviour
             shoot1 = true;
             anim.Play("Shoot2");
         }
-
         GameObject bul = GameObject.Instantiate(bullet, startBullet.position, Quaternion.identity) as GameObject;
         bul.GetComponent<BulletWolf>().target = target;
         bul.GetComponent<BulletWolf>().damage = damage;

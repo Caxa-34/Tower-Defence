@@ -9,10 +9,17 @@ public class TrigTowerBear : MonoBehaviour
     GameObject target;
     List<GameObject> enemiesInZone = new List<GameObject>();
     float dist;
+    int i;
 
     private void FixedUpdate()
     {
-        if (!target) enemiesInZone.Remove(target);
+        for (i = 0; i < enemiesInZone.Count; i++)
+        {
+            if (!enemiesInZone[i]) 
+            {
+                enemiesInZone.Remove(enemiesInZone[i]); i--;
+            }
+        }
         dist = 0;
         foreach (GameObject enemy in enemiesInZone)
         {
