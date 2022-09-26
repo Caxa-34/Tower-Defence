@@ -7,7 +7,7 @@ public class TrigTowerRabbit : MonoBehaviour
 {
     public TowerRabbit tower;
     GameObject target;
-    List<GameObject> enemiesInZone = new List<GameObject>();
+    public List<GameObject> enemiesInZone = new List<GameObject>();
     float dist;
     int i;
 

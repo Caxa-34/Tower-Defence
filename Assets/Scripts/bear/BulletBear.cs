@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BulletBear : MonoBehaviour
@@ -7,7 +5,6 @@ public class BulletBear : MonoBehaviour
     public Transform target;
     public int damage;
     
-    // Update is called once per frame
     void Update()
     {
         if (target) 
@@ -16,8 +13,10 @@ public class BulletBear : MonoBehaviour
             if (target.position == transform.position)
             {
                 target.gameObject.GetComponent<hpEnemy>().Dmg(damage);
+                if (!target.gameObject.GetComponent<hpEnemy>().isresist) target.gameObject.GetComponent<hpEnemy>().resist -= 0.3f;
                 Destroy(gameObject);
             }
         }
+        else Destroy(gameObject);
     }
 }

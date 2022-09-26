@@ -5,7 +5,6 @@ using PathCreation.Examples;
 
 public class TrigTowerWolf : MonoBehaviour
 {
-    public TowerWolf tower;
     GameObject target;
     List<GameObject> enemiesInZone = new List<GameObject>();
     float dist;
@@ -26,11 +25,11 @@ public class TrigTowerWolf : MonoBehaviour
             if (enemy.GetComponent<PathFollower>().distanceTravelled > dist)
             {
                 dist = enemy.GetComponent<PathFollower>().distanceTravelled;
-                tower.target = enemy.transform;
+                GetComponent<TowerWolf>().target = enemy.transform;
                 target = enemy;
             }
         }
-        if (enemiesInZone.Count == 0) tower.target = null;
+        if (enemiesInZone.Count == 0) GetComponent<TowerWolf>().target = null;
     }
 
     void OnTriggerEnter(Collider other)

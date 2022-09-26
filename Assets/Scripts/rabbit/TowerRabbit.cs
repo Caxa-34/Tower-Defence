@@ -23,8 +23,6 @@ public class TowerRabbit : MonoBehaviour
 
         if (target)
         {
-            // Vector3 targetV3 = new Vector3(target.position.x, transform.position.y, target.position.z);
-            // GetComponent<Transform>().transform.LookAt(targetV3);
             if (!isShoot)
             {
                 StartCoroutine(Shoot());
@@ -46,6 +44,18 @@ public class TowerRabbit : MonoBehaviour
                 targets.RemoveAt(i);
                 i--;
             }
+        for (i = 0; i < targets.Count - 1; i++)
+        {
+            if (targets[i].GetComponent<PathFollower>().distanceTravelled - targets[i+1].GetComponent<PathFollower>().distanceTravelled > 3)
+            {
+                for (int j = i + 1; j < targets.Count; j++)
+                {
+                    targets.RemoveAt(j);
+                    j--;
+                }
+                break;
+            }
+        }
         Debug.Log("Врагов " + targets.Count);
         for (i = 0; i < countTarget-1 && i < targets.Count - 1; i++)
         {
@@ -59,9 +69,6 @@ public class TowerRabbit : MonoBehaviour
         lighting.transform.LookAt(targets[0].transform);
 
         yield return new WaitForSeconds(0.2f);
-        
-        // GameObject bul = GameObject.Instantiate(bullet, startBullet.position, Quaternion.identity) as GameObject;
-        // bul.GetComponent<BulletWolf>().target = target;
 
         targets.Clear();
         for (i = 0; i < lightings.Count; i++) 

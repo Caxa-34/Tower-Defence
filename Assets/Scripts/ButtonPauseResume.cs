@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,7 +5,6 @@ public class ButtonPauseResume : MonoBehaviour
 {
     bool isPause = false;
     public GameObject dark;
-    // Start is called before the first frame update
 
     void Update()
     {

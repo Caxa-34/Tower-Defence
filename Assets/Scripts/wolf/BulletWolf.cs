@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BulletWolf : MonoBehaviour
@@ -7,7 +5,6 @@ public class BulletWolf : MonoBehaviour
     public Transform target;
     public int damage;
 
-    // Update is called once per frame
     void Update()
     {
         if (target) 
@@ -19,6 +16,6 @@ public class BulletWolf : MonoBehaviour
                 Destroy(gameObject);
             }
         }
-        if (!target) Destroy(gameObject);
+        else Destroy(gameObject);
     }
 }

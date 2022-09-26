@@ -6,7 +6,7 @@ using TMPro;
 
 public class Money : MonoBehaviour
 {
-    static public int money = 1;
+    static public int money = 5;
     public float speedMoney = 5f;
     public float maxSpeedMoney = 5f;
     public GameObject moneyPanel;

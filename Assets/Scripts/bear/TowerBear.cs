@@ -5,7 +5,7 @@ using UnityEngine;
 public class TowerBear : MonoBehaviour
 {
     public Transform startBullet; 
-    public Animator anim;
+    //public Animator anim;
     public int damage = 5;
     public float speedBullet;
     public GameObject bullet;
@@ -31,7 +31,6 @@ public class TowerBear : MonoBehaviour
         GameObject bul = GameObject.Instantiate(bullet, startBullet.position, Quaternion.identity) as GameObject;
         bul.GetComponent<BulletBear>().target = target;
         bul.GetComponent<BulletBear>().damage = damage;
-        //anim.Play("StoneCast");
         yield return new WaitForSeconds(speedBullet);
         isShoot = false;
     }
